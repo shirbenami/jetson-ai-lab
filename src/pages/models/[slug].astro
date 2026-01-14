@@ -45,7 +45,7 @@ const sortedEngines = data.supported_inference_engines ? [...data.supported_infe
             {data.short_description}
           </p>
           
-          {/* Action Buttons */}
+          {/* Action Button - Primary CTA only */}
           <div class="flex flex-wrap gap-3">
             {/* Run on Jetson - scrolls to inference section */}
             <a 
@@ -54,28 +54,6 @@ const sortedEngines = data.supported_inference_engines ? [...data.supported_infe
             >
               Run on Jetson
             </a>
-            {data.build_nvidia_url && (
-              <a 
-                href={data.build_nvidia_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/30"
-              >
-                <img src="/images/icons/nvidia-eye-logo.png" alt="NVIDIA" class="w-5 h-5 invert" />
-                build.nvidia.com
-              </a>
-            )}
-            {huggingfaceUrl && (
-              <a 
-                href={huggingfaceUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FFD21E] hover:bg-[#FFE066] text-black font-semibold rounded-lg transition-colors"
-              >
-                <img src="/images/icons/hf-logo.png" alt="HuggingFace" class="w-5 h-5" />
-                HuggingFace
-              </a>
-            )}
           </div>
         </div>
         <div class="bg-nvidia-gray-800 rounded-xl p-8 border border-nvidia-gray-700">
@@ -236,6 +214,36 @@ const sortedEngines = data.supported_inference_engines ? [...data.supported_infe
       <div class="prose prose-lg text-nvidia-gray-600 max-w-none">
         <Content />
       </div>
+      
+      {/* External Resources - build.nvidia.com and HuggingFace links */}
+      {(data.build_nvidia_url || huggingfaceUrl) && (
+        <div class="mt-10">
+          <div class="flex flex-wrap gap-3">
+            {data.build_nvidia_url && (
+              <a 
+                href={data.build_nvidia_url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 bg-nvidia-black hover:bg-nvidia-gray-800 text-white font-semibold rounded-lg transition-colors border border-nvidia-gray-700"
+              >
+                <img src="/images/icons/nvidia-eye-logo.png" alt="NVIDIA" class="w-5 h-5 invert" />
+                Try on build.nvidia.com
+              </a>
+            )}
+            {huggingfaceUrl && (
+              <a 
+                href={huggingfaceUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FFD21E] hover:bg-[#FFE066] text-black font-semibold rounded-lg transition-colors"
+              >
+                <img src="/images/icons/hf-logo.png" alt="HuggingFace" class="w-5 h-5" />
+                View on HuggingFace
+              </a>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   </section>
 </Layout>
