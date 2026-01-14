@@ -20,10 +20,17 @@
            with:
              fetch-depth: 0
    
+         - name: Setup SSH
+           run: |
+             mkdir -p ~/.ssh
+             echo "${{ secrets.STAGING_DEPLOY_KEY }}" > ~/.ssh/deploy_key
+             chmod 600 ~/.ssh/deploy_key
+             ssh-keyscan github.com >> ~/.ssh/known_hosts
+   
          - name: Push to staging repository
            run: |
-             git remote add staging https://x-access-token:${{ secrets.STAGING_REPO_TOKEN }}@github.com/NVIDIA-AI-IOT/jetson-ai-lab-stg.git
-             git push staging main --force
+             git remote add staging git@github.com:NVIDIA-AI-IOT/jetson-ai-lab-stg.git
+             GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key" git push staging main --force
            
          - name: Summary
            run: |
