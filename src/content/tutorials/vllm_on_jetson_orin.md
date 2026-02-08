@@ -36,7 +36,7 @@ docker run --rm -it \
   --runtime nvidia \
   --network host \
   -v ~/.cache/huggingface:/root/.cache/huggingface \
-  nvcr.io/nvidia/vllm:latest-jetson-orin \
+  ghcr.io/nvidia-ai-iot/vllm:latest-jetson-orin \
   /bin/bash
 ```
 
